@@ -1,0 +1,63 @@
+USE banco_relacional;
+
+CREATE TABLE Cliente (
+    idCliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    data_cadastro DATE NOT NULL
+);
+
+CREATE TABLE Produto (
+    idProduto INT AUTO_INCREMENT PRIMARY KEY,
+    nome_produto VARCHAR(150) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE Pedido (
+    idPedido INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    data_pedido DATE NOT NULL,
+    valor_total DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
+CREATE TABLE Item_Pedido (
+    idItem_Pedido INT AUTO_INCREMENT PRIMARY KEY,
+    idPedido INT NOT NULL,
+    idProduto INT NOT NULL,
+    quantidade INT NOT NULL,
+    valor_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido),
+    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
+);
+
+
+SHOW TABLES;
+
+select * from cliente
+select * from pedido
+SELECT * FROM produto;
+SELECT * FROM item_pedido;
+
+INSERT INTO cliente (nome, email, data_cadastro)
+VALUES
+('Maria Silva','maria@email.com','2025-01-10'),
+('João Souza','joao@email.com','2025-02-15');
+
+
+INSERT INTO produto (nome_produto, categoria, preco)
+VALUES
+('Notebook Dell','Informática',3500.00),
+('Mouse Gamer','Periféricos',120.00);
+
+
+INSERT INTO pedido (idCliente,data_pedido,valor_total)
+VALUES
+(1,'2025-03-10',3620.00);
+
+INSERT INTO item_pedido
+(idPedido,idProduto,quantidade,valor_unitario)
+VALUES
+(1,1,1,3500.00),
+(1,2,1,120.00);
