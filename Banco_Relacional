@@ -61,3 +61,8 @@ INSERT INTO item_pedido
 VALUES
 (1,1,1,3500.00),
 (1,2,1,120.00);
+
+select * from cliente
+select * from item_pedido
+select * from pedido
+select * from produto
