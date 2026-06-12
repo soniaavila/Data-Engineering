@@ -66,3 +66,24 @@ select * from cliente
 select * from item_pedido
 select * from pedido
 select * from produto
+
+
+
+SELECT
+    c.nome AS cliente,
+    c.email,
+    p.idPedido,
+    p.data_pedido,
+    pr.nome_produto,
+    pr.categoria,
+    i.quantidade,
+    i.valor_unitario,
+    (i.quantidade * i.valor_unitario) AS valor_total_item,
+    p.valor_total AS valor_total_pedido
+FROM cliente c
+INNER JOIN pedido p
+    ON c.idCliente = p.idCliente
+INNER JOIN item_pedido i
+    ON p.idPedido = i.idPedido
+INNER JOIN produto pr
+    ON i.idProduto = pr.idProduto;
